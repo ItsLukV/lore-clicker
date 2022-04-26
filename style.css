@@ -1,0 +1,11 @@
+#mainDiv {
+    text-align: center;
+    font-size: large;   
+}
+
+#btn {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px black solid;
+}
