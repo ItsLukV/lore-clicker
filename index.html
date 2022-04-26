@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a id="text">0</a>
+    <button id="btn">Click Me</button>
+    <script  src="script.js"></script>
+</body>
+<script>  
+document.getElementById("btn").onclick = function() {click()};
+
+var clicks = 0;
+function click() {
+    console.log("test")
+    clicks = clicks +  1;
+   document.getElementById("text").innerHTML = clicks
+   if (clicks === 10) {
+       alert("You have clicked 10 times")
+   } else if (clicks === 15) {
+       alert("You have clicked 15 times")
+   }
+}
+
+</script>
+</html>
