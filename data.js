@@ -1,4 +1,4 @@
-let playerData = {
+var playerData = {
   class: {
     wizard: false,
     warrior: false,
@@ -75,7 +75,9 @@ function restartData() {
 }
 
 function loadPlayerData() {
-  playerData = JSON.parse(localStorage.getItem("playerData"));
+  if (localStorage.getItem("playerData") !== "null") {
+    playerData = JSON.parse(localStorage.getItem("playerData"));
+  }
 }
 
 function save() {
