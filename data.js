@@ -1,38 +1,4 @@
 let playerData;
-//   class: {
-//     wizard: false,
-//     warrior: false,
-//     paladin: false,
-//   },
-//   krummer: 0,
-//   shop: {
-//     mouse: {
-//       antal: 0,
-//       cost: 5,
-//       bonus: 0,
-//     },
-//     slave: {
-//       antal: 0,
-//       cost: 10,
-//       bonus: 0,
-//     },
-//     worker: {
-//       antal: 0,
-//       cost: 100,
-//       bonus: 0,
-//     },
-//     training: {
-//       antal: 0,
-//       cost: 50,
-//       bonus: 0,
-//     },
-//     wetstone: {
-//       antal: 0,
-//       cost: 50,
-//       bonus: 0,
-//     },
-//   },
-// };
 
 function restartData() {
   playerData = {
@@ -69,6 +35,7 @@ function restartData() {
         bonus: 0,
       },
     },
+    lore: [false, false, false],
   };
 
   console.log("data restarted");

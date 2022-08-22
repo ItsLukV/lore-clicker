@@ -28,7 +28,6 @@ function setup() {
   wetstoneKnap = new WetstoneKnap(width - 200, 400, 200, 100, wetstoneShopImg);
 
   lore = new Lore();
-  lore.load();
 }
 
 function draw() {
