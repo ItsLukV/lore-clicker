@@ -4,6 +4,7 @@ let mouseKnap, slaveKnap, workerKnap, trainingKnap, wetstoneKnap;
 const ClickerD = 330;
 let SlaveCount;
 let mouseShopImg, slaveShopImg, workerShopImg, trainingShopImg, wetstoneShopImg;
+let lore;
 
 function preload() {
   img = loadImage("assets/clicker.png");
@@ -16,6 +17,7 @@ function preload() {
 
 function setup() {
   loadPlayerData();
+
   createCanvas(1450, 650);
   clicker = new Clicker(img, width / 2, height / 2);
 
@@ -24,6 +26,9 @@ function setup() {
   workerKnap = new WorkerKnap(width - 200, 200, 200, 100, workerShopImg);
   trainingKnap = new TrainingKnap(width - 200, 300, 200, 100, trainingShopImg);
   wetstoneKnap = new WetstoneKnap(width - 200, 400, 200, 100, wetstoneShopImg);
+
+  lore = new Lore();
+  lore.load();
 }
 
 function draw() {
@@ -41,6 +46,8 @@ function draw() {
   trainingKnap.show();
 
   wetstoneKnap.show();
+
+  lore.show();
 
   text(playerData.krummer, width / 2, 100);
 }
