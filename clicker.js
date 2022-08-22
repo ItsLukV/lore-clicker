@@ -28,8 +28,8 @@ class Clicker {
   clicked(mouseX, mouseY) {
     let Dist = dist(mouseX, mouseY, this.x, this.y);
     if (Dist < this.oldD / 2) {
-      this.frameCount = frameCount + frameRate() / 6;
-      playerData.clicks++;
+      this.frameCount = frameCount + frameRate() / 12;
+      playerData.krummer += playerData.shop.mouse.bonus + 1;
     }
   }
 }
