@@ -15,18 +15,6 @@ class Knap {
     image(this.img, this.x, this.y, this.width, this.height);
   }
 
-  hover() {
-    if (this.x < mouseX && this.x + this.width > mouseX) {
-      if (this.y < mouseY && this.y + this.height > mouseY) {
-        this.c = 220;
-      } else {
-        this.c = 255;
-      }
-    } else {
-      this.c = 255;
-    }
-  }
-
   clicked(func) {
     if (this.x < mouseX && this.x + this.width > mouseX) {
       if (this.y < mouseY && this.y + this.height > mouseY) {

@@ -1,15 +1,17 @@
 let img;
 let clicker;
-let mouseKnap, slaveKnap, workerKnap;
+let mouseKnap, slaveKnap, workerKnap, trainingKnap, wetstoneKnap;
 const ClickerD = 330;
 let SlaveCount;
-let mouseShopImg, slaveShopImg, workerShopImg;
+let mouseShopImg, slaveShopImg, workerShopImg, trainingShopImg, wetstoneShopImg;
 
 function preload() {
   img = loadImage("assets/clicker.png");
-  mouseShopImg = loadImage("assets/test.png");
-  slaveShopImg = loadImage("assets/test.png");
-  workerShopImg = loadImage("assets/test.png");
+  mouseShopImg = loadImage("assets/mouse.png");
+  slaveShopImg = loadImage("assets/slave.png");
+  workerShopImg = loadImage("assets/worker.png");
+  trainingShopImg = loadImage("assets/training.png");
+  wetstoneShopImg = loadImage("assets/wetstone.png");
 }
 
 function setup() {
@@ -17,11 +19,11 @@ function setup() {
   createCanvas(1450, 650);
   clicker = new Clicker(img, width / 2, height / 2);
 
-  mouseKnap = new Knap(width - 200, 0, 200, 100, slaveShopImg);
-  slaveKnap = new Knap(width - 200, 100, 200, 100, slaveShopImg);
-  workerKnap = new Knap(width - 200, 200, 200, 100, slaveShopImg);
-
-  SlaveCount = frameCount + frameRate();
+  mouseKnap = new MouseKnap(width - 200, 0, 200, 100, mouseShopImg);
+  slaveKnap = new SlaveKnap(width - 200, 100, 200, 100, slaveShopImg);
+  workerKnap = new WorkerKnap(width - 200, 200, 200, 100, workerShopImg);
+  trainingKnap = new TrainingKnap(width - 200, 300, 200, 100, trainingShopImg);
+  wetstoneKnap = new WetstoneKnap(width - 200, 400, 200, 100, wetstoneShopImg);
 }
 
 function draw() {
@@ -29,34 +31,30 @@ function draw() {
   clicker.show();
 
   mouseKnap.show();
-  mouseKnap.hover();
 
   slaveKnap.show();
-  slaveKnap.hover();
+  slaveKnap.autos();
 
   workerKnap.show();
-  workerKnap.hover();
-  autos();
+  workerKnap.autos();
+
+  trainingKnap.show();
+
+  wetstoneKnap.show();
 
   text(playerData.krummer, width / 2, 100);
 }
 
 function mouseClicked() {
   clicker.clicked(mouseX, mouseY);
-  slaveKnap.clicked(() => {
-    let PlayerSlave = playerData.shop.slave;
-    if (playerData.krummer >= playerData.shop.slave.cost) {
-      playerData.krummer -= PlayerSlave.cost;
-      PlayerSlave.antal++;
-      PlayerSlave.bonus = PlayerSlave.antal;
-    }
-  });
-}
 
-function autos() {
-  if (SlaveCount <= frameCount) {
-    playerData.krummer += playerData.shop.slave.bonus;
-    SlaveCount = frameCount + frameRate() * 2;
-    console.log("salve");
-  }
+  mouseKnap.clicked();
+
+  slaveKnap.clicked();
+
+  workerKnap.clicked();
+
+  trainingKnap.clicked();
+
+  wetstoneKnap.clicked();
 }
