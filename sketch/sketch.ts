@@ -5,7 +5,6 @@ let slaveKnap: Knap;
 let workerKnap: Knap;
 let trainingKnap: Knap;
 let wetstoneKnap: Knap;
-const ClickerD = 330;
 let SlaveCount;
 let mouseShopImg: p5.Image;
 let slaveShopImg: p5.Image;
@@ -29,17 +28,53 @@ function setup() {
   createCanvas(1450, 650);
   clicker = new Clicker(img, width / 2, height / 2);
 
-  mouseKnap = new MouseKnap(width - 200, 0, 200, 100, mouseShopImg);
-  slaveKnap = new SlaveKnap(width - 200, 100, 200, 100, slaveShopImg);
-  workerKnap = new WorkerKnap(width - 200, 200, 200, 100, workerShopImg);
-  trainingKnap = new TrainingKnap(width - 200, 300, 200, 100, trainingShopImg);
-  wetstoneKnap = new WetstoneKnap(width - 200, 400, 200, 100, wetstoneShopImg);
+  mouseKnap = new MouseKnap(
+    width - BTN_WIDTH,
+    (height / 6) * 1,
+    BTN_WIDTH,
+    BTN_HEIGHT,
+    mouseShopImg
+  );
+  slaveKnap = new SlaveKnap(
+    width - BTN_WIDTH,
+    (height / 6) * 2,
+    BTN_WIDTH,
+    BTN_HEIGHT,
+    slaveShopImg
+  );
+  workerKnap = new WorkerKnap(
+    width - BTN_WIDTH,
+    (height / 6) * 3,
+    BTN_WIDTH,
+    BTN_HEIGHT,
+    workerShopImg
+  );
+  trainingKnap = new TrainingKnap(
+    width - BTN_WIDTH,
+    (height / 6) * 4,
+    BTN_WIDTH,
+    BTN_HEIGHT,
+    trainingShopImg
+  );
+  wetstoneKnap = new WetstoneKnap(
+    width - BTN_WIDTH,
+    (height / 6) * 5,
+    BTN_WIDTH,
+    BTN_HEIGHT,
+    wetstoneShopImg
+  );
 
   lore = new Lore();
 }
 
 function draw() {
   background(100);
+
+  // push();
+  // textAlign(CENTER, CENTER);
+  // text("Shop", width - 200, (height / 6) * 0, 200, 100);
+  // pop();
+
   clicker.show();
 
   mouseKnap.show();

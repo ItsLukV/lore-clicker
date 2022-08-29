@@ -3,8 +3,8 @@ var Clicker = (function () {
         this.img = img;
         this.x = x;
         this.y = y;
-        this.d = ClickerD;
-        this.oldD = ClickerD;
+        this.d = CLICKER_D;
+        this.oldD = CLICKER_D;
         this.r = this.d / 2;
         this.rotateSpeed = 15;
         this.frameCount;
@@ -175,7 +175,6 @@ var slaveKnap;
 var workerKnap;
 var trainingKnap;
 var wetstoneKnap;
-var ClickerD = 330;
 var SlaveCount;
 var mouseShopImg;
 var slaveShopImg;
@@ -195,11 +194,11 @@ function setup() {
     loadPlayerData();
     createCanvas(1450, 650);
     clicker = new Clicker(img, width / 2, height / 2);
-    mouseKnap = new MouseKnap(width - 200, 0, 200, 100, mouseShopImg);
-    slaveKnap = new SlaveKnap(width - 200, 100, 200, 100, slaveShopImg);
-    workerKnap = new WorkerKnap(width - 200, 200, 200, 100, workerShopImg);
-    trainingKnap = new TrainingKnap(width - 200, 300, 200, 100, trainingShopImg);
-    wetstoneKnap = new WetstoneKnap(width - 200, 400, 200, 100, wetstoneShopImg);
+    mouseKnap = new MouseKnap(width - BTN_WIDTH, (height / 6) * 1, BTN_WIDTH, BTN_HEIGHT, mouseShopImg);
+    slaveKnap = new SlaveKnap(width - BTN_WIDTH, (height / 6) * 2, BTN_WIDTH, BTN_HEIGHT, slaveShopImg);
+    workerKnap = new WorkerKnap(width - BTN_WIDTH, (height / 6) * 3, BTN_WIDTH, BTN_HEIGHT, workerShopImg);
+    trainingKnap = new TrainingKnap(width - BTN_WIDTH, (height / 6) * 4, BTN_WIDTH, BTN_HEIGHT, trainingShopImg);
+    wetstoneKnap = new WetstoneKnap(width - BTN_WIDTH, (height / 6) * 5, BTN_WIDTH, BTN_HEIGHT, wetstoneShopImg);
     lore = new Lore();
 }
 function draw() {
@@ -221,6 +220,9 @@ function mouseClicked() {
     trainingKnap.clicked();
     wetstoneKnap.clicked();
 }
+var CLICKER_D = 330;
+var BTN_WIDTH = 200;
+var BTN_HEIGHT = 100;
 var Knap = (function () {
     function Knap(x, y, width, height, img) {
         this.img = img;

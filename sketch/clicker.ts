@@ -11,8 +11,8 @@ class Clicker {
     this.img = img;
     this.x = x;
     this.y = y;
-    this.d = ClickerD;
-    this.oldD = ClickerD;
+    this.d = CLICKER_D;
+    this.oldD = CLICKER_D;
     this.r = this.d / 2;
     this.rotateSpeed = 15;
     this.frameCount;
