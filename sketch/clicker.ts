@@ -1,5 +1,13 @@
 class Clicker {
-  constructor(img, x, y) {
+  img: p5.Image;
+  x: number;
+  y: number;
+  d: number;
+  oldD: number;
+  r: number;
+  rotateSpeed: number;
+  frameCount: number;
+  constructor(img: p5.Image, x: number, y: number) {
     this.img = img;
     this.x = x;
     this.y = y;
@@ -25,7 +33,7 @@ class Clicker {
     pop();
   }
 
-  clicked(mouseX, mouseY) {
+  clicked(mouseX: number, mouseY: number) {
     let Dist = dist(mouseX, mouseY, this.x, this.y);
     if (Dist < this.oldD / 2) {
       this.frameCount = frameCount + frameRate() / 12;

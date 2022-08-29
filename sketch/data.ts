@@ -1,4 +1,4 @@
-let playerData;
+let playerData: any;
 
 function restartData() {
   playerData = {
@@ -49,9 +49,9 @@ function loadPlayerData() {
   }
 }
 
-function save() {
-  playerData.krummer = clicks;
-}
+// function save() {
+//   playerData.krummer = clicks;
+// }
 
 window.addEventListener("unload", function (event) {
   save();

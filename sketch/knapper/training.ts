@@ -1,5 +1,13 @@
+/// <reference path="knap.ts"/>
+
 class TrainingKnap extends Knap {
-  constructor(x, y, width, height, img) {
+  constructor(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    img: p5.Image
+  ) {
     super(x, y, width, height, img);
   }
 

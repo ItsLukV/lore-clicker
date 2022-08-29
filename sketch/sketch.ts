@@ -1,18 +1,26 @@
-let img;
-let clicker;
-let mouseKnap, slaveKnap, workerKnap, trainingKnap, wetstoneKnap;
+let img: p5.Image;
+let clicker: Clicker;
+let mouseKnap: Knap;
+let slaveKnap: Knap;
+let workerKnap: Knap;
+let trainingKnap: Knap;
+let wetstoneKnap: Knap;
 const ClickerD = 330;
 let SlaveCount;
-let mouseShopImg, slaveShopImg, workerShopImg, trainingShopImg, wetstoneShopImg;
-let lore;
+let mouseShopImg: p5.Image;
+let slaveShopImg: p5.Image;
+let workerShopImg: p5.Image;
+let trainingShopImg: p5.Image;
+let wetstoneShopImg: p5.Image;
+let lore: Lore;
 
 function preload() {
-  img = loadImage("assets/clicker.png");
-  mouseShopImg = loadImage("assets/mouse.png");
-  slaveShopImg = loadImage("assets/slave.png");
-  workerShopImg = loadImage("assets/worker.png");
-  trainingShopImg = loadImage("assets/training.png");
-  wetstoneShopImg = loadImage("assets/wetstone.png");
+  img = loadImage("sketch/assets/clicker.png");
+  mouseShopImg = loadImage("sketch/assets/mouse.png");
+  slaveShopImg = loadImage("sketch/assets/slave.png");
+  workerShopImg = loadImage("sketch/assets/worker.png");
+  trainingShopImg = loadImage("sketch/assets/training.png");
+  wetstoneShopImg = loadImage("sketch/assets/wetstone.png");
 }
 
 function setup() {
@@ -37,10 +45,8 @@ function draw() {
   mouseKnap.show();
 
   slaveKnap.show();
-  slaveKnap.autos();
 
   workerKnap.show();
-  workerKnap.autos();
 
   trainingKnap.show();
 
@@ -53,14 +59,9 @@ function draw() {
 
 function mouseClicked() {
   clicker.clicked(mouseX, mouseY);
-
   mouseKnap.clicked();
-
   slaveKnap.clicked();
-
   workerKnap.clicked();
-
   trainingKnap.clicked();
-
   wetstoneKnap.clicked();
 }

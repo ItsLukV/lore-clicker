@@ -1,5 +1,15 @@
+/// <reference path="knap.ts"/>
+
 class WorkerKnap extends Knap {
-  constructor(x, y, width, height, img) {
+  bonusEffekt: number;
+  Count: number;
+  constructor(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    img: p5.Image
+  ) {
     super(x, y, width, height, img);
     this.bonusEffekt = 1;
     this.Count = frameCount + frameRate();

@@ -1,4 +1,5 @@
 class Lore {
+  data: any;
   constructor() {
     this.data = [
       {
@@ -32,12 +33,12 @@ class Lore {
   }
 
   show() {
-    if (this.#checkLore()) {
-      text(lore.data[this.#checkIndex()].succes, 100, 100, 200, 500);
+    if (this.checkLore()) {
+      text(lore.data[this.checkIndex()].succes, 100, 100, 200, 500);
     }
   }
 
-  #checkIndex() {
+  private checkIndex() {
     for (let i = 0; i < playerData.lore.length; i++) {
       if (playerData.lore[i] === false) {
         return i;
@@ -45,7 +46,7 @@ class Lore {
     }
   }
 
-  #checkLore() {
+  private checkLore() {
     const playerDataShop = playerData.shop;
     let currentData = {
       krummer: playerData.krummer,
@@ -57,13 +58,13 @@ class Lore {
     };
 
     // check requirement
-    if (isBigger(this.data[this.#checkIndex()].requirement, currentData)) {
+    if (isBigger(this.data[this.checkIndex()].requirement, currentData)) {
       return true;
     } else {
       return false;
     }
 
-    function isBigger(obj1, obj2) {
+    function isBigger(obj1: any, obj2: any) {
       if (obj1.krummer > obj2.krummer) {
         return false;
       } else if (obj1.mouse > obj2.mouse) {
