@@ -29,7 +29,5 @@ class Lore {
       return false;
     }
   }
-  private checkLoreItems() {
-    // is();
-  }
+  private checkLoreItems() {}
 }

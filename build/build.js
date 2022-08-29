@@ -125,8 +125,7 @@ var Lore = (function () {
             return false;
         }
     };
-    Lore.prototype.checkLoreItems = function () {
-    };
+    Lore.prototype.checkLoreItems = function () { };
     return Lore;
 }());
 var img;
@@ -136,7 +135,6 @@ var slaveKnap;
 var workerKnap;
 var trainingKnap;
 var wetstoneKnap;
-var SlaveCount;
 var shopImg;
 var mouseShopImg;
 var slaveShopImg;
