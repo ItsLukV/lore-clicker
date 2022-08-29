@@ -103,7 +103,7 @@ var Lore = (function () {
         this.data = loreData;
     }
     Lore.prototype.show = function () {
-        if (this.checkLore()) {
+        if (this.checkLoreKrummer()) {
             text(this.data[this.checkIndex()].succes, 100, 100, 200, 500);
         }
         else {
@@ -117,40 +117,15 @@ var Lore = (function () {
             }
         }
     };
-    Lore.prototype.checkLore = function () {
-        var playerDataShop = playerData.shop;
-        var currentData = {
-            krummer: playerData.krummer,
-            mouse: playerDataShop.mouse.antal,
-            slave: playerDataShop.slave.antal,
-            worker: playerDataShop.worker.antal,
-            traning: playerDataShop.training.antal,
-            wetstone: playerDataShop.wetstone.antal,
-        };
-        function isBigger(obj1, obj2) {
-            if (obj1.krummer > obj2.krummer) {
-                return false;
-            }
-            else if (obj1.mouse > obj2.mouse) {
-                return false;
-            }
-            else if (obj1.slave > obj2.slave) {
-                return false;
-            }
-            else if (obj1.worker > obj2.worker) {
-                return false;
-            }
-            else if (obj1.traning > obj2.traning) {
-                return false;
-            }
-            else if (obj1.wetstone > obj2.wetstone) {
-                return false;
-            }
-            else {
-                return true;
-            }
+    Lore.prototype.checkLoreKrummer = function () {
+        if (playerData.krummer >= this.data[this.checkIndex()].requirement.krummer.min) {
+            return true;
         }
-        return;
+        else {
+            return false;
+        }
+    };
+    Lore.prototype.checkLoreItems = function () {
     };
     return Lore;
 }());
@@ -221,7 +196,7 @@ var loreData = [
     {
         requirement: {
             krummer: {
-                min: 0,
+                min: 5,
                 max: 10,
             },
             mouse: 0,
