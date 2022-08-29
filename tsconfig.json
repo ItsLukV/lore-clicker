@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "none",
+    "module": "amd",
     "noImplicitAny": true,
     "outFile": "./build/build.js",
     "preserveConstEnums": true,
@@ -8,6 +8,8 @@
     "rootDir": "./sketch/",
     "sourceMap": true,
     "target": "es5",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   }
 }

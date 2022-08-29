@@ -1,4 +1,41 @@
-let playerData: any;
+let playerData: playerData;
+
+interface playerData {
+  class: {
+    wizard: boolean;
+    warrior: boolean;
+    paladin: boolean;
+  };
+  krummer: number;
+  shop: {
+    mouse: {
+      antal: number;
+      cost: number;
+      bonus: number;
+    };
+    slave: {
+      antal: number;
+      cost: number;
+      bonus: number;
+    };
+    worker: {
+      antal: number;
+      cost: number;
+      bonus: number;
+    };
+    training: {
+      antal: number;
+      cost: number;
+      bonus: number;
+    };
+    wetstone: {
+      antal: number;
+      cost: number;
+      bonus: number;
+    };
+  };
+  lore: boolean[];
+}
 
 function restartData() {
   playerData = {

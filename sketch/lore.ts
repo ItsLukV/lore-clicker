@@ -1,44 +1,18 @@
 class Lore {
-  data: any;
+  private data: LoreDataTypes;
   constructor() {
-    this.data = [
-      {
-        requirement: {
-          krummer: 1,
-          mouse: 0,
-          slave: 0,
-          worker: 0,
-          training: 0,
-          wetstone: 0,
-        },
-        succes:
-          "Salutations Hero and welcome to Confectopia! A land of Wizards, Warriors, Paladins as well as a whole lot of sweet!",
-        failed: "",
-      },
-      {
-        requirement: {
-          krummer: 20,
-          mouse: 0,
-          slave: 1,
-          worker: 0,
-          training: 0,
-          wetstone: 0,
-        },
-        succes:
-          "I see you've already bought yourself a slave! Hehe, the slave'll do all the work you want it to!",
-        failed:
-          "As you can see to the right, you can see that you can buy a whole bunch of different confections! Haha, get it? Confectopia? Anyways, go get yourself a worker and don't mind the uh… other option!",
-      },
-    ];
+    this.data = loreData;
   }
 
-  show() {
+  public show() {
     if (this.checkLore()) {
-      text(lore.data[this.checkIndex()].succes, 100, 100, 200, 500);
+      text(this.data[this.checkIndex()].succes, 100, 100, 200, 500);
+    } else {
+      text(this.data[this.checkIndex()].failed, 100, 100, 200, 500);
     }
   }
 
-  private checkIndex() {
+  private checkIndex(): number {
     for (let i = 0; i < playerData.lore.length; i++) {
       if (playerData.lore[i] === false) {
         return i;
@@ -46,7 +20,7 @@ class Lore {
     }
   }
 
-  private checkLore() {
+  private checkLore(): boolean {
     const playerDataShop = playerData.shop;
     let currentData = {
       krummer: playerData.krummer,
@@ -56,13 +30,12 @@ class Lore {
       traning: playerDataShop.training.antal,
       wetstone: playerDataShop.wetstone.antal,
     };
-
     // check requirement
-    if (isBigger(this.data[this.checkIndex()].requirement, currentData)) {
-      return true;
-    } else {
-      return false;
-    }
+    // if (isBigger(this.data.(this.checkIndex())requirement, currentData)) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
 
     function isBigger(obj1: any, obj2: any) {
       if (obj1.krummer > obj2.krummer) {
@@ -81,5 +54,6 @@ class Lore {
         return true;
       }
     }
+    return;
   }
 }

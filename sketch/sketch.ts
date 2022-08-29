@@ -99,3 +99,9 @@ function mouseClicked() {
   trainingKnap.clicked();
   wetstoneKnap.clicked();
 }
+
+function keyPressed(): void {
+  if (keyCode === 32) {
+    restartData();
+  }
+}
