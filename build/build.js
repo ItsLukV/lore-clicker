@@ -176,6 +176,7 @@ var workerKnap;
 var trainingKnap;
 var wetstoneKnap;
 var SlaveCount;
+var shopImg;
 var mouseShopImg;
 var slaveShopImg;
 var workerShopImg;
@@ -189,6 +190,7 @@ function preload() {
     workerShopImg = loadImage("sketch/assets/worker.png");
     trainingShopImg = loadImage("sketch/assets/training.png");
     wetstoneShopImg = loadImage("sketch/assets/wetstone.png");
+    shopImg = loadImage("sketch/assets/Shop.png");
 }
 function setup() {
     loadPlayerData();
@@ -203,6 +205,7 @@ function setup() {
 }
 function draw() {
     background(100);
+    image(shopImg, width - BTN_WIDTH, 0, 200, 100);
     clicker.show();
     mouseKnap.show();
     slaveKnap.show();

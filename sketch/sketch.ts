@@ -6,6 +6,7 @@ let workerKnap: Knap;
 let trainingKnap: Knap;
 let wetstoneKnap: Knap;
 let SlaveCount;
+let shopImg: p5.Image;
 let mouseShopImg: p5.Image;
 let slaveShopImg: p5.Image;
 let workerShopImg: p5.Image;
@@ -20,6 +21,7 @@ function preload() {
   workerShopImg = loadImage("sketch/assets/worker.png");
   trainingShopImg = loadImage("sketch/assets/training.png");
   wetstoneShopImg = loadImage("sketch/assets/wetstone.png");
+  shopImg = loadImage("sketch/assets/Shop.png");
 }
 
 function setup() {
@@ -70,10 +72,7 @@ function setup() {
 function draw() {
   background(100);
 
-  // push();
-  // textAlign(CENTER, CENTER);
-  // text("Shop", width - 200, (height / 6) * 0, 200, 100);
-  // pop();
+  image(shopImg, width - BTN_WIDTH, 0, 200, 100);
 
   clicker.show();
 
