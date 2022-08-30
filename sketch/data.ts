@@ -1,45 +1,6 @@
-let playerData: playerDataType = {
-  class: {
-    wizard: false,
-    warrior: false,
-    paladin: false,
-  },
-  krummer: 0,
-  shop: {
-    mouse: {
-      antal: 0,
-      cost: 5,
-      bonus: 0,
-    },
-    slave: {
-      antal: 0,
-      cost: 10,
-      bonus: 0,
-    },
-    worker: {
-      antal: 0,
-      cost: 100,
-      bonus: 0,
-    },
-    training: {
-      antal: 0,
-      cost: 50,
-      bonus: 0,
-    },
-    wetstone: {
-      antal: 0,
-      cost: 50,
-      bonus: 0,
-    },
-  },
-  lore: [
-    { min: false, max: false, failed: 0 },
-    { min: false, max: false, failed: 0 },
-    { min: false, max: false, failed: 0 },
-  ],
-};
+let playerData: playerData;
 
-interface playerDataType {
+interface playerData {
   class: {
     wizard: boolean;
     warrior: boolean;
@@ -73,16 +34,7 @@ interface playerDataType {
       bonus: number;
     };
   };
-  lore: playerDataTypeLore[];
-}
-
-/**
- * @param failed 0 = false, 2 = failed, 1 = succes
- **/
-interface playerDataTypeLore {
-  min: boolean;
-  max: boolean;
-  failed: number;
+  lore: boolean[];
 }
 
 function restartData() {
@@ -120,11 +72,7 @@ function restartData() {
         bonus: 0,
       },
     },
-    lore: [
-      { min: false, max: false, failed: 0 },
-      { min: false, max: false, failed: 0 },
-      { min: false, max: false, failed: 0 },
-    ],
+    lore: [false, false, false],
   };
 
   console.log("data restarted");

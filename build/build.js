@@ -46,46 +46,7 @@ var Clicker = (function () {
     };
     return Clicker;
 }());
-var playerData = {
-    class: {
-        wizard: false,
-        warrior: false,
-        paladin: false,
-    },
-    krummer: 0,
-    shop: {
-        mouse: {
-            antal: 0,
-            cost: 5,
-            bonus: 0,
-        },
-        slave: {
-            antal: 0,
-            cost: 10,
-            bonus: 0,
-        },
-        worker: {
-            antal: 0,
-            cost: 100,
-            bonus: 0,
-        },
-        training: {
-            antal: 0,
-            cost: 50,
-            bonus: 0,
-        },
-        wetstone: {
-            antal: 0,
-            cost: 50,
-            bonus: 0,
-        },
-    },
-    lore: [
-        { min: false, max: false, failed: 0 },
-        { min: false, max: false, failed: 0 },
-        { min: false, max: false, failed: 0 },
-    ],
-};
+var playerData;
 function restartData() {
     playerData = {
         class: {
@@ -121,11 +82,7 @@ function restartData() {
                 bonus: 0,
             },
         },
-        lore: [
-            { min: false, max: false, failed: 0 },
-            { min: false, max: false, failed: 0 },
-            { min: false, max: false, failed: 0 },
-        ],
+        lore: [false, false, false],
     };
     console.log("data restarted");
 }
@@ -143,69 +100,25 @@ window.addEventListener("unload", function (event) {
 });
 var Lore = (function () {
     function Lore() {
-        this.data = [
-            {
-                requirement: {
-                    krummer: {
-                        min: 6,
-                        max: 10,
-                    },
-                    mouse: 1,
-                    slave: 0,
-                    worker: 0,
-                    training: 0,
-                    wetstone: 0,
-                },
-                succes: "Salutations Hero and welcome to Confectopia! A land of Wizards, Warriors, Paladins as well as a whole lot of sweets!",
-                failed: "test",
-            },
-            {
-                requirement: {
-                    krummer: {
-                        min: 20,
-                        max: 50,
-                    },
-                    mouse: 0,
-                    slave: 1,
-                    worker: 0,
-                    training: 0,
-                    wetstone: 0,
-                },
-                succes: "I see you've already bought yourself a slave! Hehe, the slave'll do all the work you want it to!",
-                failed: "As you can see to the right, you can see that you can buy a whole bunch of different confections! Haha, get it? Confectopia? Anyways, go get yourself a worker and don't mind the uh… other option!",
-            },
-        ];
+        this.data = loreData;
     }
     Lore.prototype.show = function () {
-        if (this.checkLoreKrummer())
-            if (this.checkLoreItems()) {
-                playerData.lore[this.checkIndex()].min = true;
-                text(this.data[this.checkIndex()].succes, 100, 100, 200, 500);
-            }
-            else {
-                playerData.lore[this.checkIndex()].min = true;
-                text(this.data[this.checkIndex()].failed, 100, 100, 200, 500);
-            }
+        if (this.checkLoreKrummer()) {
+            text(this.data[this.checkIndex()].succes, 100, 100, 200, 500);
+        }
+        else {
+            text(this.data[this.checkIndex()].failed, 100, 100, 200, 500);
+        }
     };
     Lore.prototype.checkIndex = function () {
         for (var i = 0; i < playerData.lore.length; i++) {
-            if (playerData.lore[i].max === false) {
+            if (playerData.lore[i] === false) {
                 return i;
             }
         }
     };
-    Lore.prototype.checkFail = function (stat) {
-        if (stat) {
-            playerData.lore[this.checkIndex()].failed = 1;
-        }
-        else {
-            playerData.lore[this.checkIndex()].failed = 2;
-        }
-    };
     Lore.prototype.checkLoreKrummer = function () {
-        if (this.data[this.checkIndex()].requirement.krummer.min <=
-            playerData.krummer ||
-            playerData.lore[this.checkIndex()].min) {
+        if (playerData.krummer >= this.data[this.checkIndex()].requirement.krummer.min) {
             return true;
         }
         else {
@@ -256,7 +169,6 @@ function draw() {
     clicker.show();
     mouseKnap.show();
     slaveKnap.show();
-    slaveKnap.autos();
     workerKnap.show();
     trainingKnap.show();
     wetstoneKnap.show();
@@ -279,6 +191,38 @@ function keyPressed() {
 var CLICKER_D = 330;
 var BTN_WIDTH = 200;
 var BTN_HEIGHT = 100;
+var loreData = [
+    {
+        requirement: {
+            krummer: {
+                min: 5,
+                max: 10,
+            },
+            mouse: 0,
+            slave: 0,
+            worker: 0,
+            training: 0,
+            wetstone: 0,
+        },
+        succes: "Salutations Hero and welcome to Confectopia! A land of Wizards, Warriors, Paladins as well as a whole lot of sweets!",
+        failed: "",
+    },
+    {
+        requirement: {
+            krummer: {
+                min: 20,
+                max: 50,
+            },
+            mouse: 0,
+            slave: 1,
+            worker: 0,
+            training: 0,
+            wetstone: 0,
+        },
+        succes: "I see you've already bought yourself a slave! Hehe, the slave'll do all the work you want it to!",
+        failed: "As you can see to the right, you can see that you can buy a whole bunch of different confections! Haha, get it? Confectopia? Anyways, go get yourself a worker and don't mind the uh… other option!",
+    },
+];
 var Knap = (function () {
     function Knap(x, y, width, height, img) {
         this.img = img;
@@ -298,7 +242,6 @@ var Knap = (function () {
             }
         }
     };
-    Knap.prototype.autos = function () { };
     return Knap;
 }());
 var MouseKnap = (function (_super) {

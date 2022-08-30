@@ -78,7 +78,6 @@ function draw() {
   mouseKnap.show();
 
   slaveKnap.show();
-  slaveKnap.autos();
 
   workerKnap.show();
 
