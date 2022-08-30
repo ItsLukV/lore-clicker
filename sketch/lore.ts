@@ -1,5 +1,6 @@
 class Lore {
   private data: LoreDataTypes[];
+
   constructor() {
     this.data = [
       {
