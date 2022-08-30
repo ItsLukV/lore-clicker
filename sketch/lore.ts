@@ -34,7 +34,7 @@ class Lore {
         succes:
           "I see you've already bought yourself a slave! Hehe, the slave'll do all the work you want it to!",
         failed:
-          "As you can see to the right, you can see that you can buy a whole bunch of different confections! Haha, get it? Confectopia? Anyways, go get yourself a worker and don't mind the uh… other option!",
+          "As  you can see to the right, you can see that you can buy a whole bunch of different confections! Haha, get it? Confectopia? Anyways, go get yourself a worker and don't mind the uh… other option!",
       },
     ];
   }
