@@ -29,7 +29,7 @@ class SlaveKnap extends Knap {
     }
   }
 
-  autos() {
+  public autos() {
     if (this.Count <= frameCount) {
       playerData.krummer += playerData.shop.slave.bonus;
       this.Count = frameCount + frameRate() * this.bonusEffekt;

@@ -31,4 +31,6 @@ abstract class Knap {
       }
     }
   }
+
+  autos() {}
 }
