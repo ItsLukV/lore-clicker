@@ -6,10 +6,10 @@ class Lore {
       {
         requirement: {
           krummer: {
-            min: 6,
+            min: 5,
             max: 10,
           },
-          mouse: 1,
+          mouse: 0,
           slave: 0,
           worker: 0,
           training: 0,
@@ -17,7 +17,11 @@ class Lore {
         },
         succes:
           "Salutations Hero and welcome to Confectopia! A land of Wizards, Warriors, Paladins as well as a whole lot of sweets!",
-        failed: "test",
+        failed: "",
+        lore: {
+          min: false,
+          max: false,
+        },
       },
       {
         requirement: {
@@ -34,7 +38,11 @@ class Lore {
         succes:
           "I see you've already bought yourself a slave! Hehe, the slave'll do all the work you want it to!",
         failed:
-          "As  you can see to the right, you can see that you can buy a whole bunch of different confections! Haha, get it? Confectopia? Anyways, go get yourself a worker and don't mind the uh… other option!",
+          "As you can see to the right, you can see that you can buy a whole bunch of different confections! Haha, get it? Confectopia? Anyways, go get yourself a worker and don't mind the uh… other option!",
+        lore: {
+          min: false,
+          max: false,
+        },
       },
     ];
   }
@@ -69,6 +77,7 @@ class Lore {
   }
 
   private checkLoreKrummer(): boolean {
+    console.log(this.checkIndex());
     if (
       this.data[this.checkIndex()].requirement.krummer.min <=
         playerData.krummer ||

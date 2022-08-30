@@ -34,7 +34,16 @@ interface playerData {
       bonus: number;
     };
   };
-  lore: boolean[];
+  lore: playerDataLore[];
+}
+
+/**
+ * @param failed: 0 = false, 1 = succes, 2 = failed
+ */
+interface playerDataLore {
+  min: boolean;
+  max: boolean;
+  failed: number;
 }
 
 function restartData() {
@@ -72,7 +81,18 @@ function restartData() {
         bonus: 0,
       },
     },
-    lore: [false, false, false],
+    lore: [
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+    ],
   };
 
   console.log("data restarted");
