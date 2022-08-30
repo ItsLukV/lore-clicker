@@ -74,22 +74,11 @@ class Lore {
       playerData.lore[this.checkIndex()].min
     ) {
       return true;
+    } else {
+      return false;
     }
-    return false;
   }
   private checkLoreItems() {
-    let dataRec = this.data[this.checkIndex()].requirement;
-    let PlayerShop = playerData.shop;
-    let obj = {
-      mouse: PlayerShop.mouse.antal >= dataRec.mouse,
-      slave: PlayerShop.slave.antal >= dataRec.slave,
-      worker: PlayerShop.worker.antal >= dataRec.worker,
-      traning: PlayerShop.training.antal >= dataRec.training,
-      wetstone: PlayerShop.training.antal >= dataRec.wetstone,
-    };
-    this.checkFail(
-      obj.mouse && obj.slave && obj.worker && obj.traning && obj.wetstone
-    );
-    return obj.mouse && obj.slave && obj.worker && obj.traning && obj.wetstone;
+    // is();
   }
 }

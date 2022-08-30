@@ -208,20 +208,11 @@ var Lore = (function () {
             playerData.lore[this.checkIndex()].min) {
             return true;
         }
-        return false;
+        else {
+            return false;
+        }
     };
     Lore.prototype.checkLoreItems = function () {
-        var dataRec = this.data[this.checkIndex()].requirement;
-        var PlayerShop = playerData.shop;
-        var obj = {
-            mouse: PlayerShop.mouse.antal >= dataRec.mouse,
-            slave: PlayerShop.slave.antal >= dataRec.slave,
-            worker: PlayerShop.worker.antal >= dataRec.worker,
-            traning: PlayerShop.training.antal >= dataRec.training,
-            wetstone: PlayerShop.training.antal >= dataRec.wetstone,
-        };
-        this.checkFail(obj.mouse && obj.slave && obj.worker && obj.traning && obj.wetstone);
-        return obj.mouse && obj.slave && obj.worker && obj.traning && obj.wetstone;
     };
     return Lore;
 }());
@@ -232,7 +223,6 @@ var slaveKnap;
 var workerKnap;
 var trainingKnap;
 var wetstoneKnap;
-var SlaveCount;
 var shopImg;
 var mouseShopImg;
 var slaveShopImg;
