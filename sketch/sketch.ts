@@ -5,7 +5,6 @@ let slaveKnap: Knap;
 let workerKnap: Knap;
 let trainingKnap: Knap;
 let wetstoneKnap: Knap;
-let SlaveCount;
 let shopImg: p5.Image;
 let mouseShopImg: p5.Image;
 let slaveShopImg: p5.Image;
@@ -79,7 +78,6 @@ function draw() {
   mouseKnap.show();
 
   slaveKnap.show();
-  slaveKnap.autos();
 
   workerKnap.show();
 
