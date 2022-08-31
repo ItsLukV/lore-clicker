@@ -1,7 +1,8 @@
 class Lore {
+  private img: p5.Image;
   private data: LoreDataTypes[];
 
-  constructor() {
+  constructor(img: p5.Image) {
     this.data = [
       {
         requirement: {
@@ -16,7 +17,7 @@ class Lore {
           wetstone: 0,
         },
         succes:
-          "Salutations Hero and welcome to Confectopia! A land of Wizards, Warriors, Paladins as well as a whole lot of sweets!",
+          "Salutations Hero and welcome to Confectopia! \n A land of Wizards, Warriors, Paladins as well as a whole lot of sweets!",
         failed: "",
         lore: {
           min: false,
@@ -45,19 +46,35 @@ class Lore {
         },
       },
     ];
+    this.img = img;
   }
 
   public show(): void {
-    if (this.checkLoreKrummer())
-      if (this.checkLoreItems()) {
-        playerData.lore[this.checkIndex()].min = true;
+    push();
+    this.smallStuff();
 
-        text(this.data[this.checkIndex()].succes, 100, 100, 200, 500);
-      } else {
-        playerData.lore[this.checkIndex()].min = true;
+    this.nextLore();
+    let data = this.data[this.checkIndex()];
+    if (
+      !(
+        data.requirement.krummer.max >= playerData.krummer &&
+        playerData.krummer >= data.requirement.krummer.min
+      )
+    ) {
+      pop();
+      return;
+    }
 
-        text(this.data[this.checkIndex()].failed, 100, 100, 200, 500);
-      }
+    if (this.checkLoreItems()) {
+      playerData.lore[this.checkIndex()].min = true;
+
+      text(data.succes, 10, 110, 390 - 10, 450);
+    } else {
+      playerData.lore[this.checkIndex()].min = true;
+
+      text(data.failed, 10, 110, 390 - 10, 450);
+    }
+    pop();
   }
 
   private checkIndex(): number {
@@ -87,6 +104,7 @@ class Lore {
     }
     return false;
   }
+
   private checkLoreItems() {
     let dataRec = this.data[this.checkIndex()].requirement;
     let PlayerShop = playerData.shop;
@@ -101,5 +119,23 @@ class Lore {
       obj.mouse && obj.slave && obj.worker && obj.traning && obj.wetstone
     );
     return obj.mouse && obj.slave && obj.worker && obj.traning && obj.wetstone;
+  }
+
+  // TODO: make it more correct
+  private nextLore() {
+    let data = this.data[this.checkIndex()].requirement.krummer.min;
+
+    text(`Next lore at: ${data}`, 0, height - 50, 400, 50);
+  }
+
+  private smallStuff() {
+    textSize(30);
+    textAlign(CENTER);
+    push();
+    strokeWeight(20);
+    line(400, 0, 400, height);
+    pop();
+    rect(0, 0, 400, height);
+    image(this.img, 0, 0, 400, 100);
   }
 }

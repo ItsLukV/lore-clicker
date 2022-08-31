@@ -110,7 +110,7 @@ window.addEventListener("unload", function (event) {
     localStorage.setItem("playerData", JSON.stringify(playerData));
 });
 var Lore = (function () {
-    function Lore() {
+    function Lore(img) {
         this.data = [
             {
                 requirement: {
@@ -124,7 +124,7 @@ var Lore = (function () {
                     training: 0,
                     wetstone: 0,
                 },
-                succes: "Salutations Hero and welcome to Confectopia! A land of Wizards, Warriors, Paladins as well as a whole lot of sweets!",
+                succes: "Salutations Hero and welcome to Confectopia! \n A land of Wizards, Warriors, Paladins as well as a whole lot of sweets!",
                 failed: "",
                 lore: {
                     min: false,
@@ -151,17 +151,27 @@ var Lore = (function () {
                 },
             },
         ];
+        this.img = img;
     }
     Lore.prototype.show = function () {
-        if (this.checkLoreKrummer())
-            if (this.checkLoreItems()) {
-                playerData.lore[this.checkIndex()].min = true;
-                text(this.data[this.checkIndex()].succes, 100, 100, 200, 500);
-            }
-            else {
-                playerData.lore[this.checkIndex()].min = true;
-                text(this.data[this.checkIndex()].failed, 100, 100, 200, 500);
-            }
+        push();
+        this.smallStuff();
+        this.nextLore();
+        var data = this.data[this.checkIndex()];
+        if (!(data.requirement.krummer.max >= playerData.krummer &&
+            playerData.krummer >= data.requirement.krummer.min)) {
+            pop();
+            return;
+        }
+        if (this.checkLoreItems()) {
+            playerData.lore[this.checkIndex()].min = true;
+            text(data.succes, 10, 110, 390 - 10, 450);
+        }
+        else {
+            playerData.lore[this.checkIndex()].min = true;
+            text(data.failed, 10, 110, 390 - 10, 450);
+        }
+        pop();
     };
     Lore.prototype.checkIndex = function () {
         for (var i = 0; i < playerData.lore.length; i++) {
@@ -200,6 +210,20 @@ var Lore = (function () {
         this.checkFail(obj.mouse && obj.slave && obj.worker && obj.traning && obj.wetstone);
         return obj.mouse && obj.slave && obj.worker && obj.traning && obj.wetstone;
     };
+    Lore.prototype.nextLore = function () {
+        var data = this.data[this.checkIndex()].requirement.krummer.min;
+        text("Next lore at: " + data, 0, height - 50, 400, 50);
+    };
+    Lore.prototype.smallStuff = function () {
+        textSize(30);
+        textAlign(CENTER);
+        push();
+        strokeWeight(20);
+        line(400, 0, 400, height);
+        pop();
+        rect(0, 0, 400, height);
+        image(this.img, 0, 0, 400, 100);
+    };
     return Lore;
 }());
 var img;
@@ -216,6 +240,7 @@ var workerShopImg;
 var trainingShopImg;
 var wetstoneShopImg;
 var lore;
+var loreImg;
 function preload() {
     img = loadImage("sketch/assets/clicker.png");
     mouseShopImg = loadImage("sketch/assets/mouse.png");
@@ -224,6 +249,7 @@ function preload() {
     trainingShopImg = loadImage("sketch/assets/training.png");
     wetstoneShopImg = loadImage("sketch/assets/wetstone.png");
     shopImg = loadImage("sketch/assets/Shop.png");
+    loreImg = loadImage("sketch/assets/lore.png");
 }
 function setup() {
     loadPlayerData();
@@ -234,7 +260,7 @@ function setup() {
     workerKnap = new WorkerKnap(width - BTN_WIDTH, (height / 6) * 3, BTN_WIDTH, BTN_HEIGHT, workerShopImg);
     trainingKnap = new TrainingKnap(width - BTN_WIDTH, (height / 6) * 4, BTN_WIDTH, BTN_HEIGHT, trainingShopImg);
     wetstoneKnap = new WetstoneKnap(width - BTN_WIDTH, (height / 6) * 5, BTN_WIDTH, BTN_HEIGHT, wetstoneShopImg);
-    lore = new Lore();
+    lore = new Lore(loreImg);
 }
 function draw() {
     background(100);
@@ -246,7 +272,11 @@ function draw() {
     trainingKnap.show();
     wetstoneKnap.show();
     lore.show();
-    text(playerData.krummer, width / 2, 100);
+    push();
+    textSize(50);
+    var txt = "krummer: " + playerData.krummer;
+    text(txt, width / 2 - textWidth(txt) / 2, 100);
+    pop();
 }
 function mouseClicked() {
     clicker.clicked(mouseX, mouseY);
