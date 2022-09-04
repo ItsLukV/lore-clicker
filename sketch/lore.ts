@@ -45,6 +45,116 @@ class Lore {
           max: false,
         },
       },
+      {
+        requirement: {
+          krummer: {
+            min: 120,
+            max: 125,
+          },
+          mouse: 0,
+          slave: 1,
+          worker: 0,
+          training: 0,
+          wetstone: 0,
+        },
+        succes:
+          "You finally have enough money to buy a worker! M-maybe now you can uh… be the hero you're promised to be?",
+        failed:
+          "You finally have enough to buy a worker! You can now start a real business, Hero!\n+rep",
+        lore: {
+          min: false,
+          max: false,
+        },
+      },
+      {
+        requirement: {
+          krummer: {
+            min: 200,
+            max: 300,
+          },
+          mouse: 0,
+          slave: 0,
+          worker: 0,
+          training: 0,
+          wetstone: 0,
+        },
+        succes:
+          "You're probably wondering why you've been tasked with acquiring all these crumbs? Well, this world wasn' t always as you see it now *wink*",
+        failed: "",
+        lore: { min: false, max: false },
+      },
+      {
+        requirement: {
+          krummer: {
+            min: 500,
+            max: 700,
+          },
+          mouse: 0,
+          slave: 0,
+          worker: 0,
+          training: 0,
+          wetstone: 0,
+        },
+        succes:
+          "To aid you further in your quest, Hero. I have this limited time offer of a holy Crumb-Sword! It'll remain here for 1 minute and it'll only cost: 400 crumbs!",
+        failed: "",
+        lore: { min: false, max: false },
+      },
+      {
+        requirement: {
+          krummer: {
+            min: 1000,
+            max: 1250,
+          },
+          mouse: 0,
+          slave: 0,
+          worker: 0,
+          training: 0,
+          wetstone: 0,
+        },
+        succes:
+          "A lot of thoughts are probably going through your head: Who'es talking to me, what kind of world is this? Why crumbs! Well, Hero, all shall be answered in time.",
+        failed: "",
+        lore: { min: false, max: false },
+      },
+      {
+        requirement: {
+          krummer: {
+            min: 1500,
+            max: 1750,
+          },
+          mouse: 0,
+          slave: 1,
+          worker: 0,
+          training: 0,
+          wetstone: 0,
+        },
+        /// TODO der mangler noget
+        succes:
+          "How goes the slave business? Nice and cheap right? Well, champion, on you go to earn more crumbs! \n -rep (Fade in new background?)",
+        failed:
+          "Greetings, Hero, A nice day right? A nice day to earn some more crumbs!",
+        lore: { min: false, max: false },
+      },
+      {
+        requirement: {
+          krummer: {
+            min: 2000,
+            max: 2500,
+          },
+          mouse: 0,
+          slave: 1,
+          worker: 0,
+          training: 0,
+          wetstone: 0,
+        },
+        /// TODO der mangler noget
+        succes:
+          "How goes the slave business? Nice and cheap right? Well, champion, on you go to earn more crumbs! \n -rep (Fade in new background?)",
+        failed:
+          "Greetings, Hero, A nice day right? A nice day to earn some more crumbs!",
+        lore: { min: false, max: false },
+      },
     ];
     this.img = img;
   }
@@ -53,7 +163,13 @@ class Lore {
     push();
     this.smallStuff();
 
-    this.nextLore();
+    if (
+      playerData.krummer > this.data[this.checkIndex()].requirement.krummer.max
+    ) {
+      playerData.lore[this.checkIndex()].max = true;
+    }
+
+    this.showNextLore();
     let data = this.data[this.checkIndex()];
     if (
       !(
@@ -122,9 +238,8 @@ class Lore {
   }
 
   // TODO: make it more correct
-  private nextLore() {
+  private showNextLore() {
     let data = this.data[this.checkIndex()].requirement.krummer.min;
-
     text(`Next lore at: ${data}`, 0, height - 50, 400, 50);
   }
 

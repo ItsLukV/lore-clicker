@@ -92,6 +92,46 @@ function restartData() {
         max: false,
         failed: 0,
       },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
     ],
   };
 
