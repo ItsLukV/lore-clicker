@@ -12,6 +12,7 @@ let workerShopImg: p5.Image;
 let trainingShopImg: p5.Image;
 let wetstoneShopImg: p5.Image;
 let lore: Lore;
+let loreImg: p5.Image;
 
 function preload() {
   img = loadImage("sketch/assets/clicker.png");
@@ -21,6 +22,7 @@ function preload() {
   trainingShopImg = loadImage("sketch/assets/training.png");
   wetstoneShopImg = loadImage("sketch/assets/wetstone.png");
   shopImg = loadImage("sketch/assets/Shop.png");
+  loreImg = loadImage("sketch/assets/lore.png");
 }
 
 function setup() {
@@ -65,7 +67,7 @@ function setup() {
     wetstoneShopImg
   );
 
-  lore = new Lore();
+  lore = new Lore(loreImg);
 }
 
 function draw() {
@@ -87,7 +89,11 @@ function draw() {
 
   lore.show();
 
-  text(playerData.krummer, width / 2, 100);
+  push();
+  textSize(50);
+  let txt: string = `krummer: ${playerData.krummer}`;
+  text(txt, width / 2 - textWidth(txt) / 2, 100);
+  pop();
 }
 
 function mouseClicked() {

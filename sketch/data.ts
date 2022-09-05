@@ -92,6 +92,46 @@ function restartData() {
         max: false,
         failed: 0,
       },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
+      {
+        min: false,
+        max: false,
+        failed: 0,
+      },
     ],
   };
 
@@ -99,7 +139,7 @@ function restartData() {
 }
 
 function loadPlayerData() {
-  if (localStorage.getItem("playerData") !== "null") {
+  if (localStorage.getItem("playerData") !== null) {
     playerData = JSON.parse(localStorage.getItem("playerData"));
   } else {
     restartData();
