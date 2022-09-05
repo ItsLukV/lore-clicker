@@ -12,3 +12,5 @@ Hvis man ikke har node.js kan bruge den hjemmeside som spillet blevet hostet på
 eller man kan download node.js og gøre skridtene fra før.
 
 ---
+## Link Demo Video
+https://youtu.be/jKsGtglHP4E
