@@ -42,7 +42,6 @@ var Clicker = (function () {
         if (Dist < this.oldD / 2) {
             this.frameCount = frameCount + frameRate() / 12;
             var num = Math.round(Math.random() * 1) + 0;
-            console.log(num);
             playerData.krummer +=
                 playerData.shop.mouse.bonus + 1 + num * playerData.shop.training.bonus;
         }
@@ -89,52 +88,67 @@ function restartData() {
             {
                 min: false,
                 max: false,
-                failed: 0,
+                status: 0,
             },
             {
                 min: false,
                 max: false,
-                failed: 0,
+                status: 0,
             },
             {
                 min: false,
                 max: false,
-                failed: 0,
+                status: 0,
             },
             {
                 min: false,
                 max: false,
-                failed: 0,
+                status: 0,
             },
             {
                 min: false,
                 max: false,
-                failed: 0,
+                status: 0,
             },
             {
                 min: false,
                 max: false,
-                failed: 0,
+                status: 0,
             },
             {
                 min: false,
                 max: false,
-                failed: 0,
+                status: 0,
             },
             {
                 min: false,
                 max: false,
-                failed: 0,
+                status: 0,
             },
             {
                 min: false,
                 max: false,
-                failed: 0,
+                status: 0,
             },
             {
                 min: false,
                 max: false,
-                failed: 0,
+                status: 0,
+            },
+            {
+                min: false,
+                max: false,
+                status: 0,
+            },
+            {
+                min: false,
+                max: false,
+                status: 0,
+            },
+            {
+                min: false,
+                max: false,
+                status: 0,
             },
         ],
     };
@@ -149,11 +163,10 @@ function loadPlayerData() {
     }
 }
 window.addEventListener("unload", function (event) {
-    save();
     localStorage.setItem("playerData", JSON.stringify(playerData));
 });
 var Lore = (function () {
-    function Lore(img) {
+    function Lore() {
         this.data = [
             {
                 requirement: {
@@ -272,7 +285,7 @@ var Lore = (function () {
                     training: 0,
                     wetstone: 0,
                 },
-                succes: "How goes the slave business? Nice and cheap right? Well, champion, on you go to earn more crumbs! \n -rep (Fade in new background?)",
+                succes: "How goes the slave business? Nice and cheap right? Well, champion, on you go to earn more crumbs!",
                 failed: "Greetings, Hero, A nice day right? A nice day to earn some more crumbs!",
                 lore: { min: false, max: false },
             },
@@ -288,12 +301,77 @@ var Lore = (function () {
                     training: 0,
                     wetstone: 0,
                 },
-                succes: "How goes the slave business? Nice and cheap right? Well, champion, on you go to earn more crumbs! \n -rep (Fade in new background?)",
-                failed: "Greetings, Hero, A nice day right? A nice day to earn some more crumbs!",
+                succes: "Champion, why must you buy slaves! You're supposed to be our hero!",
+                failed: "Great Hero! Today is a grand day for careful, cookie, crumb, collecting!",
+                lore: { min: false, max: false },
+            },
+            {
+                requirement: {
+                    krummer: {
+                        min: 10000,
+                        max: 15000,
+                    },
+                    mouse: 0,
+                    slave: 50,
+                    worker: 0,
+                    training: 0,
+                    wetstone: 0,
+                },
+                succes: "I beg of you! Stop this way of cruelty! Slaves are the tools of evil, not good!",
+                failed: "The Sword was right in choosing you, even if you didn't choose it.",
+                lore: { min: false, max: false },
+            },
+            {
+                requirement: {
+                    krummer: {
+                        min: 50000,
+                        max: 60000,
+                    },
+                    mouse: 0,
+                    slave: 50,
+                    worker: 0,
+                    training: 0,
+                    wetstone: 0,
+                },
+                succes: "To think the Holy-Crumb Sword would ever choose you!",
+                failed: "",
+                lore: { min: false, max: false },
+            },
+            {
+                requirement: {
+                    krummer: {
+                        min: 250000,
+                        max: 350000,
+                    },
+                    mouse: 0,
+                    slave: 100,
+                    worker: 0,
+                    training: 0,
+                    wetstone: 0,
+                },
+                succes: "To think we hoped you would save us from the rise of the dark lord… when in reality you are said dark lord!",
+                failed: "Our Land truly will be saved by you!",
+                lore: { min: false, max: false },
+            },
+            {
+                requirement: {
+                    krummer: {
+                        min: 1000000,
+                        max: 1000000000000000,
+                    },
+                    mouse: 0,
+                    slave: 100,
+                    worker: 0,
+                    training: 0,
+                    wetstone: 0,
+                },
+                succes: "T-to think we would foster the growth of our own demise, Dark Lord! Enslaving out people like this… have you no shame! I would die than live as your slave, so farewell, Dark Lord… a hero will surely rise to be your demise! Ugh! *Dies*",
+                failed: "A being of good from start to finish. Though it matters not, now you must continue to grow, for the Dark Lord is sure to rise! A being as glorious and virtuous as you will surely be his demise! Now I must venture out, after all of this, I do hope that I might call you… friend.",
                 lore: { min: false, max: false },
             },
         ];
-        this.img = img;
+        this.x = 10;
+        this.y = 150;
     }
     Lore.prototype.show = function () {
         push();
@@ -310,11 +388,11 @@ var Lore = (function () {
         }
         if (this.checkLoreItems()) {
             playerData.lore[this.checkIndex()].min = true;
-            text(data.succes, 10, 110, 390 - 10, 450);
+            text(data.succes, this.x, this.y, 436 - 20, 450);
         }
         else {
             playerData.lore[this.checkIndex()].min = true;
-            text(data.failed, 10, 110, 390 - 10, 450);
+            text(data.failed, this.x, this.y, 390 - 10, 450);
         }
         pop();
     };
@@ -327,20 +405,11 @@ var Lore = (function () {
     };
     Lore.prototype.checkFail = function (stat) {
         if (stat) {
-            playerData.lore[this.checkIndex()].failed = 1;
+            playerData.lore[this.checkIndex()].status = 1;
         }
         else {
-            playerData.lore[this.checkIndex()].failed = 2;
+            playerData.lore[this.checkIndex()].status = 2;
         }
-    };
-    Lore.prototype.checkLoreKrummer = function () {
-        console.log(this.checkIndex());
-        if (this.data[this.checkIndex()].requirement.krummer.min <=
-            playerData.krummer ||
-            playerData.lore[this.checkIndex()].min) {
-            return true;
-        }
-        return false;
     };
     Lore.prototype.checkLoreItems = function () {
         var dataRec = this.data[this.checkIndex()].requirement;
@@ -362,12 +431,6 @@ var Lore = (function () {
     Lore.prototype.smallStuff = function () {
         textSize(30);
         textAlign(CENTER);
-        push();
-        strokeWeight(20);
-        line(400, 0, 400, height);
-        pop();
-        rect(0, 0, 400, height);
-        image(this.img, 0, 0, 400, 100);
     };
     return Lore;
 }());
@@ -378,38 +441,36 @@ var slaveKnap;
 var workerKnap;
 var trainingKnap;
 var wetstoneKnap;
-var shopImg;
 var mouseShopImg;
 var slaveShopImg;
 var workerShopImg;
 var trainingShopImg;
 var wetstoneShopImg;
 var lore;
-var loreImg;
+var backgroundIMG;
 function preload() {
     img = loadImage("sketch/assets/clicker.png");
-    mouseShopImg = loadImage("sketch/assets/mouse.png");
-    slaveShopImg = loadImage("sketch/assets/slave.png");
-    workerShopImg = loadImage("sketch/assets/worker.png");
-    trainingShopImg = loadImage("sketch/assets/training.png");
-    wetstoneShopImg = loadImage("sketch/assets/wetstone.png");
-    shopImg = loadImage("sketch/assets/Shop.png");
-    loreImg = loadImage("sketch/assets/lore.png");
+    mouseShopImg = loadImage("sketch/assets/mouseShop.png");
+    slaveShopImg = loadImage("sketch/assets/SlaveShop.png");
+    workerShopImg = loadImage("sketch/assets/WorkerShop.png");
+    trainingShopImg = loadImage("sketch/assets/TrainingShop.png");
+    wetstoneShopImg = loadImage("sketch/assets/WetstoneShop.png");
+    backgroundIMG = loadImage("sketch/assets//background.png");
 }
 function setup() {
     loadPlayerData();
     createCanvas(1300, 650);
-    clicker = new Clicker(img, width / 2, height / 2);
+    clicker = new Clicker(img, width / 2 + 70, height / 2);
     mouseKnap = new MouseKnap(width - BTN_WIDTH, (height / 6) * 1, BTN_WIDTH, BTN_HEIGHT, mouseShopImg);
     slaveKnap = new SlaveKnap(width - BTN_WIDTH, (height / 6) * 2, BTN_WIDTH, BTN_HEIGHT, slaveShopImg);
     workerKnap = new WorkerKnap(width - BTN_WIDTH, (height / 6) * 3, BTN_WIDTH, BTN_HEIGHT, workerShopImg);
     trainingKnap = new TrainingKnap(width - BTN_WIDTH, (height / 6) * 4, BTN_WIDTH, BTN_HEIGHT, trainingShopImg);
     wetstoneKnap = new WetstoneKnap(width - BTN_WIDTH, (height / 6) * 5, BTN_WIDTH, BTN_HEIGHT, wetstoneShopImg);
-    lore = new Lore(loreImg);
+    lore = new Lore();
 }
 function draw() {
     background(100);
-    image(shopImg, width - BTN_WIDTH, 0, 200, 100);
+    image(backgroundIMG, 0, 0);
     slaveKnap.autos();
     workerKnap.autos();
     trainingKnap.autos();
@@ -422,8 +483,9 @@ function draw() {
     lore.show();
     push();
     textSize(50);
-    var txt = "krummer: " + playerData.krummer;
-    text(txt, width / 2 - textWidth(txt) / 2, 100);
+    var txt = "Krummer: " + playerData.krummer;
+    rect(width / 2 - textWidth(txt) / 2 + 70, 50, textWidth(txt), 60);
+    text(txt, width / 2 - textWidth(txt) / 2 + 70, 100);
     pop();
 }
 function mouseClicked() {
@@ -440,8 +502,8 @@ function keyPressed() {
     }
 }
 var CLICKER_D = 330;
-var BTN_WIDTH = 200;
-var BTN_HEIGHT = 100;
+var BTN_WIDTH = 284;
+var BTN_HEIGHT = 110;
 var Knap = (function () {
     function Knap(x, y, width, height, img) {
         this.img = img;
@@ -469,14 +531,24 @@ var MouseKnap = (function (_super) {
     function MouseKnap(x, y, width, height, img) {
         return _super.call(this, x, y, width, height, img) || this;
     }
+    MouseKnap.prototype.show = function () {
+        push();
+        textSize(32.5);
+        image(this.img, this.x, this.y, this.width, this.height);
+        var pData = playerData.shop.mouse;
+        text(pData.cost, this.x + 184, this.y + 20, 93, 30);
+        text(pData.antal, this.x + 184, this.y + 66, 93, 30);
+        pop();
+    };
     MouseKnap.prototype.clicked = function () {
         if (this.x < mouseX && this.x + this.width > mouseX) {
             if (this.y < mouseY && this.y + this.height > mouseY) {
-                var playerMouse = playerData.shop.mouse;
-                if (playerData.krummer >= playerMouse.cost) {
-                    playerData.krummer -= playerMouse.cost;
-                    playerMouse.antal++;
-                    playerMouse.bonus = playerMouse.antal;
+                var pData = playerData.shop.mouse;
+                if (playerData.krummer >= pData.cost) {
+                    playerData.krummer -= pData.cost;
+                    pData.antal++;
+                    pData.bonus = pData.antal;
+                    pData.cost = Math.floor(pData.cost * 2);
                 }
             }
         }
@@ -491,15 +563,24 @@ var SlaveKnap = (function (_super) {
         _this.Count = frameCount + frameRate();
         return _this;
     }
+    SlaveKnap.prototype.show = function () {
+        push();
+        textSize(32.5);
+        image(this.img, this.x, this.y, this.width, this.height);
+        var pData = playerData.shop.slave;
+        text(pData.cost, this.x + 184, this.y + 20, 93, 30);
+        text(pData.antal, this.x + 184, this.y + 66, 93, 30);
+        pop();
+    };
     SlaveKnap.prototype.clicked = function () {
         if (this.x < mouseX && this.x + this.width > mouseX) {
             if (this.y < mouseY && this.y + this.height > mouseY) {
-                var PlayerSlave = playerData.shop.slave;
-                if (playerData.krummer >= PlayerSlave.cost) {
-                    playerData.krummer -= PlayerSlave.cost;
-                    PlayerSlave.cost = Math.floor(PlayerSlave.cost * 1.2);
-                    PlayerSlave.antal++;
-                    PlayerSlave.bonus = PlayerSlave.antal;
+                var PData = playerData.shop.slave;
+                if (playerData.krummer >= PData.cost) {
+                    playerData.krummer -= PData.cost;
+                    PData.antal++;
+                    PData.bonus = PData.antal;
+                    PData.cost = Math.floor(PData.cost * 2);
                 }
             }
         }
@@ -517,14 +598,24 @@ var TrainingKnap = (function (_super) {
     function TrainingKnap(x, y, width, height, img) {
         return _super.call(this, x, y, width, height, img) || this;
     }
+    TrainingKnap.prototype.show = function () {
+        push();
+        textSize(32.5);
+        image(this.img, this.x, this.y, this.width, this.height);
+        var pData = playerData.shop.training;
+        text(pData.cost, this.x + 184, this.y + 20, 93, 30);
+        text(pData.antal, this.x + 184, this.y + 66, 93, 30);
+        pop();
+    };
     TrainingKnap.prototype.clicked = function () {
         if (this.x < mouseX && this.x + this.width > mouseX) {
             if (this.y < mouseY && this.y + this.height > mouseY) {
-                var playerTrain = playerData.shop.training;
-                if (playerData.krummer >= playerTrain.cost) {
-                    playerData.krummer -= playerTrain.cost;
-                    playerTrain.antal++;
-                    playerTrain.bonus = playerTrain.antal;
+                var pData = playerData.shop.training;
+                if (playerData.krummer >= pData.cost) {
+                    playerData.krummer -= pData.cost;
+                    pData.antal++;
+                    pData.bonus = pData.antal;
+                    pData.cost = Math.floor(pData.cost * 2);
                 }
             }
         }
@@ -536,14 +627,24 @@ var WetstoneKnap = (function (_super) {
     function WetstoneKnap(x, y, width, height, img) {
         return _super.call(this, x, y, width, height, img) || this;
     }
+    WetstoneKnap.prototype.show = function () {
+        push();
+        textSize(32.5);
+        image(this.img, this.x, this.y, this.width, this.height);
+        var pData = playerData.shop.wetstone;
+        text(pData.cost, this.x + 184, this.y + 20, 93, 30);
+        text(pData.antal, this.x + 184, this.y + 66, 93, 30);
+        pop();
+    };
     WetstoneKnap.prototype.clicked = function () {
         if (this.x < mouseX && this.x + this.width > mouseX) {
             if (this.y < mouseY && this.y + this.height > mouseY) {
-                var playerWetstone = playerData.shop.wetstone;
-                if (playerData.krummer >= playerWetstone.cost) {
-                    playerData.krummer -= playerWetstone.cost;
-                    playerWetstone.antal++;
-                    playerWetstone.bonus = playerWetstone.antal;
+                var pData = playerData.shop.wetstone;
+                if (playerData.krummer >= pData.cost) {
+                    playerData.krummer -= pData.cost;
+                    pData.antal++;
+                    pData.bonus = pData.antal;
+                    pData.cost = Math.floor(pData.cost * 2);
                 }
             }
         }
@@ -558,15 +659,24 @@ var WorkerKnap = (function (_super) {
         _this.Count = frameCount + frameRate();
         return _this;
     }
+    WorkerKnap.prototype.show = function () {
+        push();
+        textSize(32.5);
+        image(this.img, this.x, this.y, this.width, this.height);
+        var pData = playerData.shop.worker;
+        text(pData.cost, this.x + 184, this.y + 20, 93, 30);
+        text(pData.antal, this.x + 184, this.y + 66, 93, 30);
+        pop();
+    };
     WorkerKnap.prototype.clicked = function () {
         if (this.x < mouseX && this.x + this.width > mouseX) {
             if (this.y < mouseY && this.y + this.height > mouseY) {
-                var PlayerWorker = playerData.shop.worker;
-                if (playerData.krummer >= PlayerWorker.cost) {
-                    playerData.krummer -= PlayerWorker.cost;
-                    PlayerWorker.cost = Math.floor(PlayerWorker.cost * 1.2);
-                    PlayerWorker.antal++;
-                    PlayerWorker.bonus = PlayerWorker.antal;
+                var pData = playerData.shop.worker;
+                if (playerData.krummer >= pData.cost) {
+                    playerData.krummer -= pData.cost;
+                    pData.antal++;
+                    pData.bonus = pData.antal;
+                    pData.cost = Math.floor(pData.cost * 2);
                 }
             }
         }

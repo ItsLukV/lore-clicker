@@ -1,3 +1,4 @@
+// Dette er en class, bliver brugt som grundsten til at alle knapper
 abstract class Knap {
   img: p5.Image;
   x: number;
@@ -20,10 +21,12 @@ abstract class Knap {
     this.c = 255;
   }
 
+  // Dette viser knapen
   show() {
     image(this.img, this.x, this.y, this.width, this.height);
   }
 
+  // Dette tjekker om der blivet trykket på knappen
   clicked() {
     if (this.x < mouseX && this.x + this.width > mouseX) {
       if (this.y < mouseY && this.y + this.height > mouseY) {
@@ -32,5 +35,7 @@ abstract class Knap {
     }
   }
 
+  // Dette er funktion, som nogen af dens "børn" bruger
+  // Og derfor skal den være med her
   autos() {}
 }

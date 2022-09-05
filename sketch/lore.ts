@@ -1,8 +1,10 @@
 class Lore {
-  private img: p5.Image;
   private data: LoreDataTypes[];
-
-  constructor(img: p5.Image) {
+  x: number;
+  y: number;
+  // Denne function bliver kørt når man skaber en object med denne class
+  constructor() {
+    // Dette er alle de variabler, som bliver brugt til at selve loren
     this.data = [
       {
         requirement: {
@@ -129,9 +131,8 @@ class Lore {
           training: 0,
           wetstone: 0,
         },
-        /// TODO der mangler noget
         succes:
-          "How goes the slave business? Nice and cheap right? Well, champion, on you go to earn more crumbs! \n -rep (Fade in new background?)",
+          "How goes the slave business? Nice and cheap right? Well, champion, on you go to earn more crumbs!",
         failed:
           "Greetings, Hero, A nice day right? A nice day to earn some more crumbs!",
         lore: { min: false, max: false },
@@ -148,17 +149,87 @@ class Lore {
           training: 0,
           wetstone: 0,
         },
-        /// TODO der mangler noget
         succes:
-          "How goes the slave business? Nice and cheap right? Well, champion, on you go to earn more crumbs! \n -rep (Fade in new background?)",
+          "Champion, why must you buy slaves! You're supposed to be our hero!",
         failed:
-          "Greetings, Hero, A nice day right? A nice day to earn some more crumbs!",
+          "Great Hero! Today is a grand day for careful, cookie, crumb, collecting!",
+        lore: { min: false, max: false },
+      },
+      {
+        requirement: {
+          krummer: {
+            min: 10000,
+            max: 15000,
+          },
+          mouse: 0,
+          slave: 50,
+          worker: 0,
+          training: 0,
+          wetstone: 0,
+        },
+        succes:
+          "I beg of you! Stop this way of cruelty! Slaves are the tools of evil, not good!",
+        failed:
+          "The Sword was right in choosing you, even if you didn't choose it.",
+        lore: { min: false, max: false },
+      },
+      {
+        requirement: {
+          krummer: {
+            min: 50000,
+            max: 60000,
+          },
+          mouse: 0,
+          slave: 50,
+          worker: 0,
+          training: 0,
+          wetstone: 0,
+        },
+        succes: "To think the Holy-Crumb Sword would ever choose you!",
+        failed: "",
+        lore: { min: false, max: false },
+      },
+      {
+        requirement: {
+          krummer: {
+            min: 250000,
+            max: 350000,
+          },
+          mouse: 0,
+          slave: 100,
+          worker: 0,
+          training: 0,
+          wetstone: 0,
+        },
+        succes:
+          "To think we hoped you would save us from the rise of the dark lord… when in reality you are said dark lord!",
+        failed: "Our Land truly will be saved by you!",
+        lore: { min: false, max: false },
+      },
+      {
+        requirement: {
+          krummer: {
+            min: 1000000,
+            max: 1000000000000000,
+          },
+          mouse: 0,
+          slave: 100,
+          worker: 0,
+          training: 0,
+          wetstone: 0,
+        },
+        succes:
+          "T-to think we would foster the growth of our own demise, Dark Lord! Enslaving out people like this… have you no shame! I would die than live as your slave, so farewell, Dark Lord… a hero will surely rise to be your demise! Ugh! *Dies*",
+        failed:
+          "A being of good from start to finish. Though it matters not, now you must continue to grow, for the Dark Lord is sure to rise! A being as glorious and virtuous as you will surely be his demise! Now I must venture out, after all of this, I do hope that I might call you… friend.",
         lore: { min: false, max: false },
       },
     ];
-    this.img = img;
+    this.x = 10;
+    this.y = 150;
   }
 
+  // Dette er en function, som bliver køre tick
   public show(): void {
     push();
     this.smallStuff();
@@ -184,16 +255,17 @@ class Lore {
     if (this.checkLoreItems()) {
       playerData.lore[this.checkIndex()].min = true;
 
-      text(data.succes, 10, 110, 390 - 10, 450);
+      text(data.succes, this.x, this.y, 436 - 20, 450);
     } else {
       playerData.lore[this.checkIndex()].min = true;
 
-      text(data.failed, 10, 110, 390 - 10, 450);
+      text(data.failed, this.x, this.y, 390 - 10, 450);
     }
     pop();
   }
 
-  private checkIndex(): number {
+  // Dette er en function, som returner index nummeret nuværende posistion i this.data
+  public checkIndex(): number {
     for (let i = 0; i < playerData.lore.length; i++) {
       if (playerData.lore[i].max === false) {
         return i;
@@ -201,26 +273,16 @@ class Lore {
     }
   }
 
+  // Dette gemmer om man havde de krav for at se loren i playerdata
   private checkFail(stat: boolean) {
     if (stat) {
-      playerData.lore[this.checkIndex()].failed = 1;
+      playerData.lore[this.checkIndex()].status = 1;
     } else {
-      playerData.lore[this.checkIndex()].failed = 2;
+      playerData.lore[this.checkIndex()].status = 2;
     }
   }
 
-  private checkLoreKrummer(): boolean {
-    console.log(this.checkIndex());
-    if (
-      this.data[this.checkIndex()].requirement.krummer.min <=
-        playerData.krummer ||
-      playerData.lore[this.checkIndex()].min
-    ) {
-      return true;
-    }
-    return false;
-  }
-
+  // Dette tjeker om man har items nok til at se "succes" lore
   private checkLoreItems() {
     let dataRec = this.data[this.checkIndex()].requirement;
     let PlayerShop = playerData.shop;
@@ -237,20 +299,15 @@ class Lore {
     return obj.mouse && obj.slave && obj.worker && obj.traning && obj.wetstone;
   }
 
-  // TODO: make it more correct
+  // Dette skriver texten om, hvornår man kan se næste lore afsnit
   private showNextLore() {
     let data = this.data[this.checkIndex()].requirement.krummer.min;
     text(`Next lore at: ${data}`, 0, height - 50, 400, 50);
   }
 
+  // Dette er funtion, som indholder mange forskillge diverse function
   private smallStuff() {
     textSize(30);
     textAlign(CENTER);
-    push();
-    strokeWeight(20);
-    line(400, 0, 400, height);
-    pop();
-    rect(0, 0, 400, height);
-    image(this.img, 0, 0, 400, 100);
   }
 }

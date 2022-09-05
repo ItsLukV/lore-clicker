@@ -1,5 +1,6 @@
 let playerData: playerData;
 
+// Dette fortæller, hvilken type af variable playerData indeholder
 interface playerData {
   class: {
     wizard: boolean;
@@ -38,14 +39,16 @@ interface playerData {
 }
 
 /**
- * @param failed: 0 = false, 1 = succes, 2 = failed
+ * Dette bliver brugt i interface over.
+ * @param status: 0 = false, 1 = succes, 2 = failed
  */
 interface playerDataLore {
   min: boolean;
   max: boolean;
-  failed: number;
+  status: number;
 }
 
+// Dette genstarter den data, som bliver gemt på browser
 function restartData() {
   playerData = {
     class: {
@@ -85,52 +88,67 @@ function restartData() {
       {
         min: false,
         max: false,
-        failed: 0,
+        status: 0,
       },
       {
         min: false,
         max: false,
-        failed: 0,
+        status: 0,
       },
       {
         min: false,
         max: false,
-        failed: 0,
+        status: 0,
       },
       {
         min: false,
         max: false,
-        failed: 0,
+        status: 0,
       },
       {
         min: false,
         max: false,
-        failed: 0,
+        status: 0,
       },
       {
         min: false,
         max: false,
-        failed: 0,
+        status: 0,
       },
       {
         min: false,
         max: false,
-        failed: 0,
+        status: 0,
       },
       {
         min: false,
         max: false,
-        failed: 0,
+        status: 0,
       },
       {
         min: false,
         max: false,
-        failed: 0,
+        status: 0,
       },
       {
         min: false,
         max: false,
-        failed: 0,
+        status: 0,
+      },
+      {
+        min: false,
+        max: false,
+        status: 0,
+      },
+      {
+        min: false,
+        max: false,
+        status: 0,
+      },
+      {
+        min: false,
+        max: false,
+        status: 0,
       },
     ],
   };
@@ -138,6 +156,7 @@ function restartData() {
   console.log("data restarted");
 }
 
+// Denne funktion
 function loadPlayerData() {
   if (localStorage.getItem("playerData") !== null) {
     playerData = JSON.parse(localStorage.getItem("playerData"));
@@ -146,11 +165,8 @@ function loadPlayerData() {
   }
 }
 
-// function save() {
-//   playerData.krummer = clicks;
-// }
-
+// Dette en funktion bliver køre, lige før fanen/hjemmesiden bliver lukket.
+// Den gemmer playerData(alt data om player) på browsen igennem localstorage
 window.addEventListener("unload", function (event) {
-  save();
   localStorage.setItem("playerData", JSON.stringify(playerData));
 });
