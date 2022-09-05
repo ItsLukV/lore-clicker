@@ -115,10 +115,10 @@ function mouseClicked() {
   wetstoneKnap.clicked();
 }
 
-/// TODO slet dette
-// Dette er en dev funtion, og er ikke mening at den skal være med i det færdigvare
+
+// Dette er en dev funtion, Den restarter alt playerData, dette ment som hvis spillet sommer med at virke
 function keyPressed(): void {
-  if (keyCode === 32) {
+  if (keyCode === 220) {
     restartData();
   }
 }
