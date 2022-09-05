@@ -13,4 +13,5 @@ eller man kan download node.js og gøre skridtene fra før.
 
 ---
 ## Link Demo Video
-https://youtu.be/jKsGtglHP4E
+Link til video: https://youtu.be/jKsGtglHP4E
+Link til video om, gemme system: https://youtu.be/ui9HE9aKOKQ
