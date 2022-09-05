@@ -139,7 +139,7 @@ function restartData() {
 }
 
 function loadPlayerData() {
-  if (localStorage.getItem("playerData") !== "null") {
+  if (localStorage.getItem("playerData") !== null) {
     playerData = JSON.parse(localStorage.getItem("playerData"));
   } else {
     restartData();
