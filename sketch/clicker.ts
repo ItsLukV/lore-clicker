@@ -18,6 +18,7 @@ class Clicker {
     this.frameCount;
   }
 
+  // Dette viser småkagen og den rotere den også
   show() {
     if (frameCount < this.frameCount) {
       this.d = this.oldD * 0.8;
@@ -33,19 +34,16 @@ class Clicker {
     pop();
   }
 
+  // Dette er en function bliver køret når man trykker på spillet
+  // I denne funtion bliver der tjekket om man trykker på småkagen
+  // Hvis ja, så tilføjer den X krummer
   clicked(mouseX: number, mouseY: number) {
     let Dist = dist(mouseX, mouseY, this.x, this.y);
     if (Dist < this.oldD / 2) {
       this.frameCount = frameCount + frameRate() / 12;
       let num = Math.round(Math.random() * 1) + 0;
-      console.log(num);
       playerData.krummer +=
         playerData.shop.mouse.bonus + 1 + num * playerData.shop.training.bonus;
     }
   }
 }
-
-// function IntRandom() {
-//   if (Math.random() < 0.5) return 0;
-//   else return 1;
-// }

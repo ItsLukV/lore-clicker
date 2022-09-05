@@ -5,31 +5,34 @@ let slaveKnap: Knap;
 let workerKnap: Knap;
 let trainingKnap: Knap;
 let wetstoneKnap: Knap;
-let shopImg: p5.Image;
 let mouseShopImg: p5.Image;
 let slaveShopImg: p5.Image;
 let workerShopImg: p5.Image;
 let trainingShopImg: p5.Image;
 let wetstoneShopImg: p5.Image;
 let lore: Lore;
-let loreImg: p5.Image;
+let backgroundIMG: p5.Image;
 
+// Dette er function, bliver loadet ind før alt andet. Det er her,
+// hvor de billeder, som bliver brugt bliver loadet ind
 function preload() {
   img = loadImage("sketch/assets/clicker.png");
-  mouseShopImg = loadImage("sketch/assets/mouse.png");
-  slaveShopImg = loadImage("sketch/assets/slave.png");
-  workerShopImg = loadImage("sketch/assets/worker.png");
-  trainingShopImg = loadImage("sketch/assets/training.png");
-  wetstoneShopImg = loadImage("sketch/assets/wetstone.png");
-  shopImg = loadImage("sketch/assets/Shop.png");
-  loreImg = loadImage("sketch/assets/lore.png");
+  mouseShopImg = loadImage("sketch/assets/mouseShop.png");
+  slaveShopImg = loadImage("sketch/assets/SlaveShop.png");
+  workerShopImg = loadImage("sketch/assets/WorkerShop.png");
+  trainingShopImg = loadImage("sketch/assets/TrainingShop.png");
+  wetstoneShopImg = loadImage("sketch/assets/WetstoneShop.png");
+  backgroundIMG = loadImage("sketch/assets//background.png");
 }
 
+// Dette en function som bliver køre lige før game loopet bliver startet.
+// Det her, hvor de forskillge knapper bliver skabt
+// Og det også dataen bliver loadet ind
 function setup() {
   loadPlayerData();
 
   createCanvas(1300, 650);
-  clicker = new Clicker(img, width / 2, height / 2);
+  clicker = new Clicker(img, width / 2 + 70, height / 2);
 
   mouseKnap = new MouseKnap(
     width - BTN_WIDTH,
@@ -67,13 +70,14 @@ function setup() {
     wetstoneShopImg
   );
 
-  lore = new Lore(loreImg);
+  lore = new Lore();
 }
 
+// Denne funktion bliver køre, hvert tick.
+// Funktions opgave er at tegne eller opdatere de forskillge elementer
 function draw() {
   background(100);
-
-  image(shopImg, width - BTN_WIDTH, 0, 200, 100);
+  image(backgroundIMG, 0, 0);
 
   slaveKnap.autos();
   workerKnap.autos();
@@ -95,11 +99,13 @@ function draw() {
 
   push();
   textSize(50);
-  let txt: string = `krummer: ${playerData.krummer}`;
-  text(txt, width / 2 - textWidth(txt) / 2, 100);
+  let txt: string = `Krummer: ${playerData.krummer}`;
+  rect(width / 2 - textWidth(txt) / 2 + 70, 50, textWidth(txt), 60);
+  text(txt, width / 2 - textWidth(txt) / 2 + 70, 100);
   pop();
 }
 
+// Denne funktion bliver køret, hver gang mousen bliver trykket
 function mouseClicked() {
   clicker.clicked(mouseX, mouseY);
   mouseKnap.clicked();
@@ -109,6 +115,8 @@ function mouseClicked() {
   wetstoneKnap.clicked();
 }
 
+/// TODO slet dette
+// Dette er en dev funtion, og er ikke mening at den skal være med i det færdigvare
 function keyPressed(): void {
   if (keyCode === 32) {
     restartData();

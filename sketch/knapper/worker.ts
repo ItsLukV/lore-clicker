@@ -15,20 +15,33 @@ class WorkerKnap extends Knap {
     this.Count = frameCount + frameRate();
   }
 
+  // Detter er funktion som viser knap og dens pris og antal
+  show() {
+    push();
+    textSize(32.5);
+    image(this.img, this.x, this.y, this.width, this.height);
+    let pData = playerData.shop.worker;
+    text(pData.cost, this.x + 184, this.y + 20, 93, 30);
+    text(pData.antal, this.x + 184, this.y + 66, 93, 30);
+    pop();
+  }
+  // Dette er en function bliver køret når man trykker på spillet
+  // I denne funtion bliver der tjekket om man trykker knappen
   clicked() {
     if (this.x < mouseX && this.x + this.width > mouseX) {
       if (this.y < mouseY && this.y + this.height > mouseY) {
-        const PlayerWorker = playerData.shop.worker;
-        if (playerData.krummer >= PlayerWorker.cost) {
-          playerData.krummer -= PlayerWorker.cost;
-          PlayerWorker.cost = Math.floor(PlayerWorker.cost * 1.2);
-          PlayerWorker.antal++;
-          PlayerWorker.bonus = PlayerWorker.antal;
+        const pData = playerData.shop.worker;
+        if (playerData.krummer >= pData.cost) {
+          playerData.krummer -= pData.cost;
+          pData.antal++;
+          pData.bonus = pData.antal;
+          pData.cost = Math.floor(pData.cost * 2);
         }
       }
     }
   }
 
+  // Denne funtion, tilføjer krummer til krummesum automatisk
   autos() {
     if (this.Count <= frameCount) {
       let pData = playerData.shop;
