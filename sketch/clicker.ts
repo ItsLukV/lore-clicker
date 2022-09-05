@@ -37,7 +37,15 @@ class Clicker {
     let Dist = dist(mouseX, mouseY, this.x, this.y);
     if (Dist < this.oldD / 2) {
       this.frameCount = frameCount + frameRate() / 12;
-      playerData.krummer += playerData.shop.mouse.bonus + 1;
+      let num = Math.round(Math.random() * 1) + 0;
+      console.log(num);
+      playerData.krummer +=
+        playerData.shop.mouse.bonus + 1 + num * playerData.shop.training.bonus;
     }
   }
 }
+
+// function IntRandom() {
+//   if (Math.random() < 0.5) return 0;
+//   else return 1;
+// }

@@ -28,7 +28,7 @@ function preload() {
 function setup() {
   loadPlayerData();
 
-  createCanvas(1450, 650);
+  createCanvas(1300, 650);
   clicker = new Clicker(img, width / 2, height / 2);
 
   mouseKnap = new MouseKnap(
@@ -74,6 +74,10 @@ function draw() {
   background(100);
 
   image(shopImg, width - BTN_WIDTH, 0, 200, 100);
+
+  slaveKnap.autos();
+  workerKnap.autos();
+  trainingKnap.autos();
 
   clicker.show();
 

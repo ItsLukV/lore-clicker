@@ -41,7 +41,10 @@ var Clicker = (function () {
         var Dist = dist(mouseX, mouseY, this.x, this.y);
         if (Dist < this.oldD / 2) {
             this.frameCount = frameCount + frameRate() / 12;
-            playerData.krummer += playerData.shop.mouse.bonus + 1;
+            var num = Math.round(Math.random() * 1) + 0;
+            console.log(num);
+            playerData.krummer +=
+                playerData.shop.mouse.bonus + 1 + num * playerData.shop.training.bonus;
         }
     };
     return Clicker;
@@ -395,7 +398,7 @@ function preload() {
 }
 function setup() {
     loadPlayerData();
-    createCanvas(1450, 650);
+    createCanvas(1300, 650);
     clicker = new Clicker(img, width / 2, height / 2);
     mouseKnap = new MouseKnap(width - BTN_WIDTH, (height / 6) * 1, BTN_WIDTH, BTN_HEIGHT, mouseShopImg);
     slaveKnap = new SlaveKnap(width - BTN_WIDTH, (height / 6) * 2, BTN_WIDTH, BTN_HEIGHT, slaveShopImg);
@@ -407,6 +410,9 @@ function setup() {
 function draw() {
     background(100);
     image(shopImg, width - BTN_WIDTH, 0, 200, 100);
+    slaveKnap.autos();
+    workerKnap.autos();
+    trainingKnap.autos();
     clicker.show();
     mouseKnap.show();
     slaveKnap.show();
@@ -455,6 +461,7 @@ var Knap = (function () {
             }
         }
     };
+    Knap.prototype.autos = function () { };
     return Knap;
 }());
 var MouseKnap = (function (_super) {
@@ -532,7 +539,7 @@ var WetstoneKnap = (function (_super) {
     WetstoneKnap.prototype.clicked = function () {
         if (this.x < mouseX && this.x + this.width > mouseX) {
             if (this.y < mouseY && this.y + this.height > mouseY) {
-                var playerWetstone = playerData.shop.training;
+                var playerWetstone = playerData.shop.wetstone;
                 if (playerData.krummer >= playerWetstone.cost) {
                     playerData.krummer -= playerWetstone.cost;
                     playerWetstone.antal++;
@@ -566,7 +573,8 @@ var WorkerKnap = (function (_super) {
     };
     WorkerKnap.prototype.autos = function () {
         if (this.Count <= frameCount) {
-            playerData.krummer += playerData.shop.worker.bonus;
+            var pData = playerData.shop;
+            playerData.krummer += pData.worker.bonus + pData.wetstone.bonus;
             this.Count = frameCount + frameRate() * this.bonusEffekt;
         }
     };

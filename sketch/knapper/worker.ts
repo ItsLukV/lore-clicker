@@ -31,7 +31,8 @@ class WorkerKnap extends Knap {
 
   autos() {
     if (this.Count <= frameCount) {
-      playerData.krummer += playerData.shop.worker.bonus;
+      let pData = playerData.shop;
+      playerData.krummer += pData.worker.bonus + pData.wetstone.bonus;
       this.Count = frameCount + frameRate() * this.bonusEffekt;
     }
   }

@@ -14,7 +14,7 @@ class WetstoneKnap extends Knap {
   clicked() {
     if (this.x < mouseX && this.x + this.width > mouseX) {
       if (this.y < mouseY && this.y + this.height > mouseY) {
-        const playerWetstone = playerData.shop.training;
+        const playerWetstone = playerData.shop.wetstone;
         if (playerData.krummer >= playerWetstone.cost) {
           playerData.krummer -= playerWetstone.cost;
           playerWetstone.antal++;
