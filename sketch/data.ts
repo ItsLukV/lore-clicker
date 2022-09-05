@@ -156,12 +156,12 @@ function restartData() {
   console.log("data restarted");
 }
 
-// Denne funktion
+// Denne funktion loade spilerens data
 function loadPlayerData() {
-  if (localStorage.getItem("playerData") !== null) {
-    playerData = JSON.parse(localStorage.getItem("playerData"));
-  } else {
+  if (localStorage.getItem("playerData") === null) {
     restartData();
+  } else {
+    playerData = JSON.parse(localStorage.getItem("playerData"));
   }
 }
 
